@@ -1,0 +1,378 @@
+:root {
+  color: #111827;
+  background: #f9fafb;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff 0%, #f9fafb 45%, #ecfeff 100%);
+}
+
+.app-header {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem max(1.25rem, calc((100vw - 1120px) / 2));
+}
+
+.brand {
+  align-items: center;
+  color: #111827;
+  display: inline-flex;
+  font-size: 1.2rem;
+  font-weight: 750;
+  gap: 0.55rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  align-items: center;
+  background: #3b82f6;
+  border-radius: 0.55rem;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.9rem;
+  height: 1.75rem;
+  justify-content: center;
+  width: 1.75rem;
+}
+
+.main-content {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 4.5rem 1.25rem;
+}
+
+.page-intro {
+  max-width: 650px;
+  padding-bottom: 2.5rem;
+}
+
+.eyebrow {
+  color: #0284c7;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.65rem;
+  text-transform: uppercase;
+}
+
+.page-intro h1 {
+  font-size: clamp(2.15rem, 5vw, 3.75rem);
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+  margin: 0;
+}
+
+.page-intro > p:last-child,
+.panel-heading p,
+.empty-state p,
+.task-card p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.page-intro > p:last-child {
+  font-size: 1.05rem;
+  margin: 1rem 0 0;
+}
+
+.tasks-panel {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 18px 45px rgba(30, 64, 175, 0.08);
+  overflow: hidden;
+}
+
+.panel-heading {
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.45rem 1.5rem;
+}
+
+.panel-heading h2,
+.task-card h2,
+.empty-state h2 {
+  margin: 0;
+}
+
+.panel-heading p {
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
+}
+
+.button {
+  align-items: center;
+  background: #3b82f6;
+  border: 1px solid #3b82f6;
+  border-radius: 0.55rem;
+  color: #fff;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 0.4rem;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem;
+}
+
+.button:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.button--secondary {
+  background: #fff;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.button--mobile-only {
+  display: none;
+}
+
+.task-list {
+  display: grid;
+}
+
+.task-card {
+  align-items: flex-start;
+  border-bottom: 1px solid #eef2f7;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.3rem 1.5rem;
+}
+
+.task-card:last-child {
+  border-bottom: 0;
+}
+
+.task-card h2 {
+  font-size: 1rem;
+  margin-top: 0.55rem;
+}
+
+.task-card p {
+  font-size: 0.92rem;
+  margin: 0.4rem 0 0;
+  max-width: 700px;
+}
+
+.task-card__actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.75rem;
+}
+
+.text-button,
+.icon-button {
+  background: transparent;
+  border: 0;
+  color: #2563eb;
+  font-weight: 700;
+  padding: 0.2rem;
+}
+
+.text-button--danger {
+  color: #dc2626;
+}
+
+.status {
+  border-radius: 999px;
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 750;
+  padding: 0.25rem 0.6rem;
+}
+
+.status--todo {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status--in_progress {
+  background: #fef3c7;
+  color: #a16207;
+}
+
+.status--done {
+  background: #ccfbf1;
+  color: #0f766e;
+}
+
+.empty-state,
+.loading-state {
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.loading-state {
+  color: #64748b;
+}
+
+.dialog-backdrop {
+  align-items: center;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  z-index: 10;
+}
+
+.task-form {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+  display: grid;
+  max-width: 560px;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.dialog-header {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.dialog-header h2 {
+  margin: 0;
+}
+
+.task-form label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.task-form input,
+.task-form select,
+.task-form textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  color: #111827;
+  padding: 0.65rem 0.75rem;
+  width: 100%;
+}
+
+.task-form input:focus,
+.task-form select:focus,
+.task-form textarea:focus {
+  border-color: #3b82f6;
+  outline: 3px solid #dbeafe;
+}
+
+.field-error {
+  color: #dc2626;
+  font-size: 0.83rem;
+  margin: 0.35rem 0 0;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.notification {
+  align-items: center;
+  border-radius: 0.65rem;
+  bottom: 1.25rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  max-width: calc(100vw - 2.5rem);
+  padding: 0.85rem 1rem;
+  position: fixed;
+  right: 1.25rem;
+  width: 430px;
+}
+
+.notification--success {
+  background: #ecfeff;
+  border: 1px solid #99f6e4;
+  color: #115e59;
+}
+
+.notification--error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 0.9rem 1rem;
+  }
+
+  .app-header > .button {
+    display: none;
+  }
+
+  .main-content {
+    padding: 2.5rem 1rem;
+  }
+
+  .button--mobile-only {
+    display: inline-flex;
+  }
+
+  .panel-heading,
+  .task-card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .task-card {
+    flex-direction: column;
+  }
+
+  .task-card__actions {
+    width: 100%;
+  }
+
+  .notification {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
