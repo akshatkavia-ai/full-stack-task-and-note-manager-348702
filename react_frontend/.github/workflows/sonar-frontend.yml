@@ -1,0 +1,60 @@
+name: SonarQube Frontend
+
+# Runs the React frontend test suite with coverage, generating LCOV
+# (coverage/lcov.info), then executes SonarQube analysis using the repository's
+# sonar-project.properties.
+#
+# Required repository secrets:
+#   SONAR_HOST_URL - URL of the SonarQube server (e.g. https://sonarqube.example.com)
+#   SONAR_TOKEN    - authentication token for the SonarQube project
+#
+# The `npm test` script is defined in package.json as `jest --coverage --runInBand`,
+# which runs non-interactively, enforces the 85% coverage threshold from
+# jest.config.cjs, and writes coverage/lcov.info consumed by the scanner via
+# sonar.javascript.lcov.reportPaths=coverage/lcov.info.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sonar-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: full-stack-task-and-note-manager-348702/react_frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history gives SonarQube accurate new-code and blame analysis.
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        # Use `npm ci` for reproducible installs from the lockfile when present;
+        # fall back to `npm install` if the repository does not commit a lockfile.
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run tests and generate LCOV coverage
+        run: npm test
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        with:
+          # Ensures the scanner picks up the frontend sonar-project.properties.
+          projectBaseDir: full-stack-task-and-note-manager-348702/react_frontend
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
